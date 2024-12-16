@@ -1,0 +1,13 @@
+{
+  "ClassName": "Person",
+  "Properties": [
+    {
+      "Name": "Id",
+      "Type": "int"
+    },
+    {
+      "Name": "Name",
+      "Type": "string"
+    }
+  ]
+}

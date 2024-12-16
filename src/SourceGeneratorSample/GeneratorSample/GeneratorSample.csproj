@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+		<PropertyGroup>
+				<!-- フレームワークは固定 -->
+				<TargetFramework>netstandard2.0</TargetFramework>
+				<!-- netstandard2.0のC#の既定のバージョンが7.3なので、明示的に上げておく -->
+				<LangVersion>12</LangVersion>
+
+				<!-- Generatorである宣言 -->
+				<IsRoslynComponent>true</IsRoslynComponent>
+				<AnalyzerLanguage>cs</AnalyzerLanguage>
+				<!-- 警告を消すためのフラグ -->
+				<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+				
+		</PropertyGroup>
+
+		<ItemGroup>
+				<!-- Generator用パッケージ -->
+				<PackageReference Include="Microsoft.CodeAnalysis" Version="4.12.0" />
+				<PackageReference Include="System.Text.Json" Version="9.0.0" GeneratePathProperty="true" PrivateAssets="all" />
+				<!-- System.Text.Json用-->
+				<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.0" GeneratePathProperty="true" PrivateAssets="all" />
+				<PackageReference Include="System.Buffers" Version="4.5.1" GeneratePathProperty="true" PrivateAssets="all" />
+				<PackageReference Include="System.IO.Pipelines" Version="9.0.0" GeneratePathProperty="true" PrivateAssets="all" />
+				<PackageReference Include="System.Memory" Version="4.5.5" GeneratePathProperty="true" PrivateAssets="all" />
+				<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" GeneratePathProperty="true" PrivateAssets="all" />
+				<PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" GeneratePathProperty="true" PrivateAssets="all" />
+				<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" GeneratePathProperty="true" PrivateAssets="all" />
+		</ItemGroup>
+		
+		<!-- 依存先の明示 -->
+		<PropertyGroup>
+				<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+		</PropertyGroup>
+		
+		<Target Name="GetDependencyTargetPaths">
+				<ItemGroup>
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" IncludeRuntimeDependency="false" />
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll" IncludeRuntimeDependency="false" />
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Buffers)\lib\netstandard2.0\System.Buffers.dll" IncludeRuntimeDependency="false" />
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_IO_Pipelines)\lib\netstandard2.0\System.IO.Pipelines.dll" IncludeRuntimeDependency="false" />
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Memory)\lib\netstandard2.0\System.Memory.dll" IncludeRuntimeDependency="false" />
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Runtime_CompilerServices_Unsafe)\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" IncludeRuntimeDependency="false" />
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Text_Encodings_Web)\lib\netstandard2.0\System.Text.Encodings.Web.dll" IncludeRuntimeDependency="false" />
+						<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Threading_Tasks_Extensions)\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll" IncludeRuntimeDependency="false" />
+				</ItemGroup>
+		</Target>
+</Project>
