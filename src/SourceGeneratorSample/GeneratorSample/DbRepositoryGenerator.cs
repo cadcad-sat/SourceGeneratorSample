@@ -58,7 +58,7 @@ public partial class {{typeSymbol.Name}}DbRepository
 
     public async Task<{{typeSymbol.Name}}> GetByIdAsync(int id)
     {
-        return await _context.{{typeSymbol.Name}}.FindAsync(id);
+        return await _context.Set<{{typeSymbol.Name}}>().FindAsync(id);
     }
 }
 """;
